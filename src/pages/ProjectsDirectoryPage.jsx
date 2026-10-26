@@ -12,14 +12,7 @@ import ArcCarousel from '../components/ui/arc-carousel';
 
 export default function ProjectsDirectoryPage() {
   const { projects } = CYBER_DATA;
-  const [filter, setFilter] = useState('ALL');
   const [carouselIndex, setCarouselIndex] = useState(0);
-
-  const statuses = ['ALL', 'Prototype', 'In development', 'Evaluated / validated'];
-
-  const filteredProjects = filter === 'ALL' 
-    ? projects 
-    : projects.filter(p => p.status === filter);
 
   const getStatusBadge = (status) => {
     switch (status) {
@@ -69,35 +62,9 @@ export default function ProjectsDirectoryPage() {
           transition={{ duration: 0.5, delay: 0.15 }}
           className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed max-w-3xl mx-auto"
         >
-          Cataloguing our open-source tools, lab specifications, and defensive prototypes. Rotate the continuous 3D verification arch or filter through our complete technical catalog. Every initiative communicates its core challenge, engineering method, architecture, and documented limitations.
+          Cataloguing our open-source tools, lab specifications, and defensive prototypes. Every initiative communicates its core challenge, engineering method, architecture, and documented limitations.
         </motion.p>
       </div>
-
-      {/* Status Filter Tabs (Clean Frosted Glass Pills) */}
-      <motion.div 
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.3 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="flex items-center justify-center gap-2.5 mb-10 relative z-10"
-      >
-        {statuses.map(st => (
-          <button
-            key={st}
-            onClick={() => {
-              setFilter(st);
-              setCarouselIndex(0);
-            }}
-            className={`px-4 py-2 rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
-              filter === st
-                ? "bg-[#00F0FF] text-black font-bold shadow-[0_0_20px_rgba(0,240,255,0.35)]"
-                : "bg-white/[0.04] border border-white/10 text-slate-400 hover:text-white hover:border-white/25 backdrop-blur-md"
-            }`}
-          >
-            {st === 'ALL' ? 'All Projects' : st}
-          </button>
-        ))}
-      </motion.div>
 
       {/* 3D INTERACTIVE ARC CAROUSEL WHEEL (Cloudy & Smoky Blending, 1-Second Auto Rotation) */}
       <motion.div 
@@ -106,14 +73,8 @@ export default function ProjectsDirectoryPage() {
         transition={{ duration: 0.6 }}
         className="w-full relative mb-12"
       >
-        <div className="text-center mb-4 relative z-10">
-          <span className="text-[11px] font-mono text-cyan-300/80 bg-white/[0.03] border border-cyan-500/20 px-3.5 py-1 rounded-full backdrop-blur-md">
-            Rotating automatically every 1s &bull; Drag to inspect active project node
-          </span>
-        </div>
-
         <ArcCarousel
-          items={filteredProjects.length > 0 ? filteredProjects : projects}
+          items={projects}
           activeIndex={carouselIndex}
           onChange={setCarouselIndex}
           cardWidth={340}
