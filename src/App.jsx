@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { initGlobalSplitText } from './utils/initSplitText';
 import CyberNavbar from './components/CyberNavbar';
 import CyberFooter from './components/CyberFooter';
+
+// Register GSAP ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -30,6 +36,29 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  const location = useLocation();
+
+  // Safe 3D SplitText Ripple re-initialized on every navigation & scroll
+  useEffect(() => {
+    let cleanup = null;
+
+    const setupSplit = () => {
+      cleanup = initGlobalSplitText();
+      ScrollTrigger.refresh();
+    };
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(setupSplit);
+    } else {
+      setTimeout(setupSplit, 250);
+    }
+
+    return () => {
+      if (cleanup) cleanup();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
+  }, [location.pathname]);
+
   return (
     <div className="min-h-screen bg-[#060A12] text-slate-100 flex flex-col font-sans selection:bg-[#00F0FF]/30 selection:text-cyan-200">
       <ScrollToTop />

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { Sparkles, ArrowUpRight, FolderGit2, CheckCircle2, Filter } from 'lucide-react';
 import { CYBER_DATA } from '../data/cyberData';
 
@@ -18,7 +19,7 @@ export default function ProjectsDirectoryPage() {
       case 'Prototype':
         return 'bg-amber-500/15 text-[#FFA439] border-amber-500/40';
       case 'In development':
-        return 'bg-cyan-500/15 text-cyan-400 border-cyan-500/40';
+        return 'bg-cyan-500/15 text-[#00F0FF] border-cyan-500/40';
       case 'Evaluated / validated':
         return 'bg-emerald-500/15 text-emerald-400 border-emerald-500/40';
       default:
@@ -29,22 +30,43 @@ export default function ProjectsDirectoryPage() {
   return (
     <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto select-none">
       
-      {/* Header */}
+      {/* Header with 3D SplitText Support */}
       <div className="text-center max-w-3xl mx-auto mb-12">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-cyan-500/20 text-xs font-mono text-cyan-300 mb-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-cyan-500/20 text-xs font-mono text-cyan-300 mb-4"
+        >
           <FolderGit2 className="w-3.5 h-3.5 text-[#00F0FF]" />
           <span>VERIFIED ENGINEERING INVENTORY</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-black text-white font-royal tracking-tight mb-4">
+        </motion.div>
+        <h1 
+          className="text-3xl sm:text-5xl font-black text-white font-royal tracking-tight mb-4 split-heading"
+          style={{ perspective: '1000px' }}
+        >
           Technical <span className="text-[#00F0FF]">Projects Directory</span>
         </h1>
-        <p className="text-sm sm:text-base text-gray-300 font-sans leading-relaxed">
+        <motion.p 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="text-sm sm:text-base text-gray-300 font-sans leading-relaxed"
+        >
           Cataloguing our open-source tools, lab specifications, and defensive prototypes. Every project includes verified maturity statuses and documented limitations.
-        </p>
+        </motion.p>
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+      <motion.div 
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.3 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="flex flex-wrap items-center justify-center gap-2 mb-12"
+      >
         {statuses.map(st => (
           <button
             key={st}
@@ -58,13 +80,21 @@ export default function ProjectsDirectoryPage() {
             {st === 'ALL' ? 'All Projects' : st}
           </button>
         ))}
-      </div>
+      </motion.div>
 
-      {/* Projects Grid */}
+      {/* Projects Grid — Scroll-Triggered Staggered Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProjects.map(proj => (
-          <div 
+        {filteredProjects.map((proj, idx) => (
+          <motion.div 
             key={proj.slug}
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.15 }}
+            transition={{ 
+              duration: 0.6, 
+              delay: (idx % 3) * 0.12, 
+              ease: [0.16, 1, 0.3, 1] 
+            }}
             className="rounded-2xl bg-[#080d18] border border-white/10 p-6 flex flex-col justify-between hover:border-cyan-500/40 transition-all duration-300 group hover:-translate-y-1 shadow-lg"
           >
             <div>
@@ -108,7 +138,7 @@ export default function ProjectsDirectoryPage() {
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </Link>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
