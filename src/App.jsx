@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { initGlobalSplitText } from './utils/initSplitText';
 import CyberNavbar from './components/CyberNavbar';
 import CyberFooter from './components/CyberFooter';
+import CyberBackgroundWatermark from './components/CyberBackgroundWatermark';
 
 // Register GSAP ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
@@ -60,8 +61,9 @@ export default function App() {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-[#060A12] text-slate-100 flex flex-col font-sans selection:bg-[#00F0FF]/30 selection:text-cyan-200">
+    <div className="min-h-screen bg-[#04070D] text-slate-100 flex flex-col font-sans relative">
       <ScrollToTop />
+      <CyberBackgroundWatermark />
       <CyberNavbar />
       
       <main className="flex-1">
