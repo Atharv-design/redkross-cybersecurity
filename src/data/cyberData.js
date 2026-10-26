@@ -2,24 +2,30 @@
 // Strictly extracted and structured from:
 // "RedKross_Cybersecurity_Subdomain_Full_Specification.pdf"
 
+import { getEcosystemUrl } from '../utils/ecosystemLinks';
+
 export const CYBER_DATA = {
   // 1. Identity & Cross-Domain Routing (Section 1 & 5)
   identity: {
     name: "RedKross Cybersecurity",
     fullName: "RedKross Research Foundation — Cybersecurity Division",
+    subdomainLabel: "cyber.redkross.org.in",
     tagline: "Cybersecurity Research. Practical Learning. Safer Digital Systems.",
     shortDesc: "We explore cybersecurity challenges through applied research, carefully scoped technical projects and accessible learning.",
     parentOrg: {
       name: "RedKross Research Foundation",
-      url: "https://redkross.org.in",
+      get url() { return getEcosystemUrl('main'); },
+      canonicalUrl: "https://redkross.org.in",
       legalStatus: "Section 8 Registered Non-Profit Research Organisation",
       cin: "U85499HR2026NPL144741"
     },
     subdomain: {
-      primary: "https://cyber.redkross.org.in",
+      get primary() { return getEcosystemUrl('cyber'); },
+      canonicalPrimary: "https://cyber.redkross.org.in",
       alternate: "https://cybersecurity.redkross.org.in"
     },
-    psychologyDomain: "https://psychology.redkross.org.in",
+    get psychologyDomain() { return getEcosystemUrl('psychology'); },
+    canonicalPsychologyDomain: "https://psychology.redkross.org.in",
     contacts: {
       general: "contact@redkross.org.in",
       disclosure: "security@redkross.org.in",
