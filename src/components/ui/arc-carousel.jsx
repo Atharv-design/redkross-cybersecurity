@@ -1,15 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 /**
- * ArcCarousel - Full-Interactive Continuous Arch Wheel for Cybersecurity Platform
+ * ArcCarousel - Continuous 3D Arc Wheel for Cybersecurity Platform
  * 
- * Features:
- * 1. FULL CURSOR DRAGGING: Click & drag anywhere with mouse or touch to manually slide the cards!
- * 2. MOUSE SCROLL WHEEL: Scroll with mouse wheel over the arch to rotate cards smoothly.
- * 3. MAGNETIC CARD SNAPPING: Releases snap cleanly to the nearest card apex.
- * 4. ONE-WAY AUTO PLAY: Automatically moves when idle; pauses instantly on hover or drag.
- * 5. ZERO BACKWARD TILT: 100% straight 2D cards perpendicular to camera.
- * 6. ZERO CROSS-FLYING: Continuous wheel mechanics; cards never cross through the middle.
+ * Auto-rotates every 1 second continuously.
+ * Single main page scroll - no inner trapped scrollbars or hijacked wheel events.
  */
 export default function ArcCarousel({
   items,
@@ -19,7 +14,7 @@ export default function ArcCarousel({
   cardWidth = 340,
   cardHeight = 490,
   radius = 980,
-  autoPlayInterval = 2200
+  autoPlayInterval = 1000 // Exact 1 second per user requirement
 }) {
   const containerRef = useRef(null);
 
@@ -27,10 +22,9 @@ export default function ArcCarousel({
   const TOTAL_SLOTS = 15;
   const ANGLE_STEP = 360 / TOTAL_SLOTS; // 24 degrees per card
 
-  // Current angle in degrees (can be any continuous float during dragging)
+  // Current angle in degrees (continuous float during dragging)
   const [currentAngle, setCurrentAngle] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
 
   // Drag tracking refs
   const dragStartRef = useRef({ x: 0, startAngle: 0, hasMoved: false });
@@ -63,9 +57,9 @@ export default function ArcCarousel({
     }
   }, [activeIndex, items.length, isDragging, ANGLE_STEP]);
 
-  // Continuous auto-play when NOT hovering and NOT dragging
+  // Continuous auto-play: Changes cards every 1 second
   useEffect(() => {
-    if (isHovered || isDragging || items.length === 0) return;
+    if (isDragging || items.length === 0) return;
 
     const timer = setInterval(() => {
       setCurrentAngle((prev) => {
@@ -78,9 +72,9 @@ export default function ArcCarousel({
     }, autoPlayInterval);
 
     return () => clearInterval(timer);
-  }, [isHovered, isDragging, items.length, onChange, autoPlayInterval, ANGLE_STEP]);
+  }, [isDragging, items.length, onChange, autoPlayInterval, ANGLE_STEP]);
 
-  // Pointer drag handlers
+  // Pointer drag handlers (Manual swipe/drag capability)
   const handlePointerDown = (e) => {
     setIsDragging(true);
     dragStartRef.current = {
@@ -117,27 +111,6 @@ export default function ArcCarousel({
     onChange?.(origIdx);
   };
 
-  // Mouse scroll wheel handler
-  const handleWheel = useCallback((e) => {
-    e.preventDefault();
-    const delta = e.deltaX !== 0 ? e.deltaX : e.deltaY;
-    
-    setCurrentAngle((prev) => {
-      const stepChange = delta > 0 ? 1 : -1;
-      const nextStep = Math.round(prev / ANGLE_STEP) + stepChange;
-      const origIdx = ((nextStep % items.length) + items.length) % items.length;
-      onChange?.(origIdx);
-      return nextStep * ANGLE_STEP;
-    });
-  }, [ANGLE_STEP, items.length, onChange]);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    el.addEventListener('wheel', handleWheel, { passive: false });
-    return () => el.removeEventListener('wheel', handleWheel);
-  }, [handleWheel]);
-
   const handleCardClick = (slotIndex, origIndex) => {
     if (dragStartRef.current.hasMoved) return;
     const currentStep = Math.round(currentAngle / ANGLE_STEP);
@@ -154,18 +127,13 @@ export default function ArcCarousel({
   return (
     <div 
       ref={containerRef}
-      className={`relative w-full h-[580px] sm:h-[640px] select-none flex flex-col items-center justify-start ${
+      className={`relative w-full h-[580px] sm:h-[640px] select-none flex flex-col items-center justify-start overflow-hidden ${
         isDragging ? 'cursor-grabbing' : 'cursor-grab'
       }`}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerLeave={handlePointerUp}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => {
-        setIsHovered(false);
-        if (isDragging) handlePointerUp();
-      }}
       style={{ 
         touchAction: 'pan-y',
         maskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
@@ -185,7 +153,7 @@ export default function ArcCarousel({
           transform: `rotate(${-currentAngle}deg)`,
           transition: isDragging 
             ? 'none' 
-            : 'transform 0.65s cubic-bezier(0.2, 0.8, 0.25, 1)',
+            : 'transform 0.45s cubic-bezier(0.2, 0.8, 0.25, 1)',
         }}
       >
         {wheelItems.map((item) => {
@@ -218,7 +186,7 @@ export default function ArcCarousel({
             >
               <div 
                 className={`w-full h-full transition-transform duration-300 ${
-                  isApex ? 'scale-100' : 'scale-[0.93]'
+                  isApex ? 'scale-105' : 'scale-95'
                 }`}
               >
                 {renderItem(item, {
