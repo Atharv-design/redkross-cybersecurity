@@ -30,10 +30,6 @@ export default function ProjectsDirectoryPage() {
   return (
     <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto select-none relative">
       
-      {/* Background Ambient Atmospheric Smoke Clouds */}
-      <div className="absolute top-36 left-1/2 -translate-x-1/2 w-[950px] h-[480px] bg-[#00F0FF]/[0.04] rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute top-64 left-1/2 -translate-x-1/2 w-[750px] h-[420px] bg-[#1e40af]/[0.05] rounded-full blur-[160px] pointer-events-none" />
-
       {/* Header with 3D SplitText Support */}
       <div className="text-center max-w-4xl mx-auto mb-10 relative z-10">
         <motion.div 
@@ -66,9 +62,9 @@ export default function ProjectsDirectoryPage() {
         </motion.p>
       </div>
 
-      {/* 3D INTERACTIVE ARC CAROUSEL WHEEL (Cloudy & Smoky Blending, 1-Second Auto Rotation) */}
+      {/* 3D INTERACTIVE ARC CAROUSEL WHEEL (Seamless Blend, 1.5s Auto-Rotation with Hover-Pause & Hold-to-Drag) */}
       <motion.div 
-        initial={{ opacity: 0, scale: 0.97 }}
+        initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
         className="w-full relative mb-12"
@@ -80,45 +76,27 @@ export default function ProjectsDirectoryPage() {
           cardWidth={340}
           cardHeight={500}
           radius={1100}
-          autoPlayInterval={1000}
+          autoPlayInterval={1500}
           renderItem={(project, { isApex, angle, index }) => {
             const isAmber = index % 2 === 1;
             const primaryColor = isAmber ? '#FFA439' : '#00F0FF';
 
-            // Smoky & Cloudy Blended Card Styling (Zero sharp harsh edges, soft atmospheric dissolve)
+            // Clean Glassmorphism Card Styling (No cutoffs, cleanly blended)
             const cardBg = isApex
-              ? (isAmber
-                  ? 'bg-gradient-to-b from-[#1c1308]/75 via-[#110a08]/70 to-[#060810]/85'
-                  : 'bg-gradient-to-b from-[#091524]/75 via-[#060e1a]/70 to-[#03060e]/85')
-              : 'bg-gradient-to-b from-[#080d18]/50 via-[#050912]/50 to-[#020409]/70';
+              ? (isAmber ? 'bg-[#0e0a06]/90' : 'bg-[#080e1a]/90')
+              : 'bg-[#050812]/75';
 
             const cardBorder = isApex
               ? (isAmber
-                  ? 'border border-amber-400/20 shadow-[0_0_50px_rgba(255,164,57,0.16),0_25px_60px_rgba(0,0,0,0.8),inset_0_0_35px_rgba(255,164,57,0.05)]'
-                  : 'border border-cyan-400/20 shadow-[0_0_50px_rgba(0,240,255,0.16),0_25px_60px_rgba(0,0,0,0.8),inset_0_0_35px_rgba(0,240,255,0.05)]')
-              : 'border border-white/[0.04] shadow-[0_15px_40px_rgba(0,0,0,0.6)]';
+                  ? 'border border-amber-400/30 shadow-[0_12px_36px_rgba(255,164,57,0.12)]'
+                  : 'border border-cyan-400/30 shadow-[0_12px_36px_rgba(0,240,255,0.12)]')
+              : 'border border-white/[0.06] shadow-md';
 
             return (
               <div 
-                className={`w-full h-full rounded-3xl p-6 flex flex-col justify-between transition-all duration-300 backdrop-blur-2xl relative overflow-hidden ${cardBg} ${cardBorder}`}
+                className={`w-full h-full rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 backdrop-blur-xl relative overflow-hidden ${cardBg} ${cardBorder}`}
               >
-                {/* Smoky Internal Radial Fog Layers */}
-                <div 
-                  className="absolute -top-16 -right-16 w-56 h-56 rounded-full blur-3xl pointer-events-none transition-opacity duration-700" 
-                  style={{
-                    backgroundColor: `${primaryColor}14`,
-                    opacity: isApex ? 0.9 : 0.25
-                  }}
-                />
-                <div 
-                  className="absolute -bottom-16 -left-16 w-52 h-52 rounded-full blur-3xl pointer-events-none transition-opacity duration-700" 
-                  style={{
-                    backgroundColor: isAmber ? '#b4530914' : '#1e40af18',
-                    opacity: isApex ? 0.8 : 0.2
-                  }}
-                />
-
-                {/* Reticle Tags */}
+                {/* Subtle corner reticles */}
                 <div className="absolute top-4 left-5 text-[9px] font-mono text-slate-400 flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: primaryColor }} />
                   <span>[ + ] NODE 0{index + 1}</span>
@@ -169,8 +147,8 @@ export default function ProjectsDirectoryPage() {
                     </p>
                   </div>
 
-                  {/* Architecture Specification Box (Frosted Smoky) */}
-                  <div className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.05] backdrop-blur-xl mb-3">
+                  {/* Architecture Specification Box */}
+                  <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.05] backdrop-blur-md mb-3">
                     <div className="text-[10px] font-mono text-slate-300 uppercase font-bold flex items-center gap-1.5 mb-1">
                       <Terminal className="w-3 h-3 text-[#00F0FF]" />
                       <span>Approach &amp; Method:</span>
@@ -180,8 +158,8 @@ export default function ProjectsDirectoryPage() {
                     </p>
                   </div>
 
-                  {/* Documented Limitation Notice (Smoky Amber) */}
-                  <div className="p-3 rounded-2xl bg-amber-500/[0.05] border border-amber-500/15 text-[10px] text-amber-200/90 flex items-start gap-1.5 mb-3 backdrop-blur-xl">
+                  {/* Documented Limitation Notice */}
+                  <div className="p-3 rounded-xl bg-amber-500/[0.05] border border-amber-500/15 text-[10px] text-amber-200/90 flex items-start gap-1.5 mb-3 backdrop-blur-md">
                     <AlertCircle className="w-3.5 h-3.5 text-[#FFA439] shrink-0 mt-0.5" />
                     <span className="line-clamp-2">
                       <strong className="text-[#FFA439]">Limitation:</strong> {project.limitations}
@@ -195,7 +173,7 @@ export default function ProjectsDirectoryPage() {
                     {project.tools.slice(0, 4).map((tool) => (
                       <span 
                         key={tool}
-                        className="px-2.5 py-0.5 rounded-full bg-white/[0.03] border border-white/[0.06] text-[9px] font-mono text-slate-300 backdrop-blur-md"
+                        className="px-2.5 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.06] text-[9px] font-mono text-slate-300 backdrop-blur-md"
                       >
                         {tool}
                       </span>
