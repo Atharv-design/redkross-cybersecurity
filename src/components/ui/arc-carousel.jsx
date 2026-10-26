@@ -140,7 +140,7 @@ export default function ArcCarousel({
   return (
     <div 
       ref={containerRef}
-      className={`relative w-full h-[600px] select-none flex flex-col items-center justify-start ${
+      className={`relative w-full select-none flex flex-col items-center justify-start ${
         isDragging ? 'cursor-grabbing' : 'cursor-grab'
       }`}
       onPointerEnter={() => setIsHovered(true)}
@@ -152,7 +152,10 @@ export default function ArcCarousel({
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerUp}
-      style={{ touchAction: 'pan-y' }}
+      style={{ 
+        height: `${cardHeight + 70}px`,
+        touchAction: 'pan-y' 
+      }}
     >
       {/* 2D Circular Arch Container */}
       <div 

@@ -1,11 +1,16 @@
 import React from 'react';
+import CyberLightningDischarge from './CyberLightningDischarge';
 
 /**
  * CyberBackgroundWatermark
  * Persistent, ambient cybersecurity watermark layer centered in the viewport.
- * Features the RedKross crest in electric cyan/cobalt, faint concentric radar rings,
- * and delicate telemetry hairlines with soft edge vignettes.
- * Strictly non-interactive (pointer-events-none) and calibrated for WCAG contrast.
+ * Features:
+ * - RedKross crest in electric cyan/cobalt with pristine legibility
+ * - Concentric radar rings (Inner, Middle, Outer reticle)
+ * - Faded, ambient 60fps Procedural Cyber Lightning Discharge that travels outward
+ *   smoothly and gracefully (2.0s travel, 4.2s cycle) without overshadowing
+ *   the central RedKross logo or any webpage content.
+ * - Non-intrusive, WCAG compliant, non-blocking pointer-events-none.
  */
 export default function CyberBackgroundWatermark() {
   return (
@@ -14,46 +19,55 @@ export default function CyberBackgroundWatermark() {
       className="fixed inset-0 pointer-events-none z-0 overflow-hidden flex items-center justify-center select-none"
     >
       {/* 1. Subtle Center Ambient Glow */}
-      <div className="absolute w-[560px] h-[560px] bg-[#00F0FF]/[0.035] rounded-full blur-[140px]" />
-      <div className="absolute w-[420px] h-[420px] bg-[#2563EB]/[0.04] rounded-full blur-[120px]" />
+      <div className="absolute w-[560px] h-[560px] bg-[#00F0FF]/[0.025] rounded-full blur-[140px]" />
+      <div className="absolute w-[420px] h-[420px] bg-[#2563EB]/[0.03] rounded-full blur-[120px]" />
 
       {/* 2. Cyber Hairline Crosshair Axes */}
       <div className="absolute w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/[0.06] to-transparent" />
       <div className="absolute h-full w-[1px] bg-gradient-to-b from-transparent via-cyan-500/[0.06] to-transparent" />
 
-      {/* 3. Outer Concentric Cyber Reticle Ring (Ultra-Slow Ambient Drift) */}
-      <div className="absolute w-[680px] h-[680px] rounded-full border border-cyan-500/[0.07] animate-[spin_240s_linear_infinite]">
+      {/* 3. Outer Concentric Cyber Reticle Ring (680px diameter, 340px radius) */}
+      <div className="absolute w-[680px] h-[680px] rounded-full border border-cyan-500/[0.1] shadow-[0_0_15px_rgba(0,240,255,0.04)] animate-[spin_240s_linear_infinite]">
         {/* Cardinal Axis Markers */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2.5 h-[2px] bg-cyan-400/35" />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2.5 h-[2px] bg-cyan-400/35" />
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 h-2.5 w-[2px] bg-cyan-400/35" />
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 h-2.5 w-[2px] bg-cyan-400/35" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-[2px] bg-cyan-400/40 shadow-[0_0_6px_rgba(0,240,255,0.6)]" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-[2px] bg-cyan-400/40 shadow-[0_0_6px_rgba(0,240,255,0.6)]" />
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 h-3 w-[2px] bg-cyan-400/40 shadow-[0_0_6px_rgba(0,240,255,0.6)]" />
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 h-3 w-[2px] bg-cyan-400/40 shadow-[0_0_6px_rgba(0,240,255,0.6)]" />
       </div>
 
-      {/* 4. Middle Concentric Ring (Faint Dashed Guide) */}
-      <div className="absolute w-[520px] h-[520px] rounded-full border border-cyan-500/[0.06] border-dashed" />
+      {/* 4. Middle Concentric Ring (Faint Dashed Guide - 520px) */}
+      <div className="absolute w-[520px] h-[520px] rounded-full border border-cyan-500/[0.07] border-dashed" />
 
-      {/* 5. Inner Orbit Ring */}
-      <div className="absolute w-[380px] h-[380px] rounded-full border border-cyan-500/[0.08]" />
+      {/* 5. Inner Orbit Ring (380px) */}
+      <div className="absolute w-[380px] h-[380px] rounded-full border border-cyan-500/[0.09]" />
 
-      {/* 6. Centered RedKross Cyber Crest Watermark */}
-      <div className="relative flex items-center justify-center">
+      {/* 6. Soft Bottom Arc Laser Tangent Line */}
+      <div 
+        className="absolute w-[720px] h-[1px] bg-gradient-to-r from-transparent via-[#00F0FF]/20 to-transparent pointer-events-none"
+        style={{ transform: 'translateY(340px)' }}
+      />
+
+      {/* 7. AMBIENT FADED BLUE CYBER LIGHTNING (Layered Deep Behind Logo & Cards) */}
+      <CyberLightningDischarge />
+
+      {/* 8. Centered RedKross Cyber Crest Watermark (Layered with Enhanced Subtle Visibility & High Text Contrast) */}
+      <div className="relative z-10 flex items-center justify-center">
         <img 
           src="/assets/logo-cyber-watermark.png" 
           alt=""
-          className="w-[280px] sm:w-[420px] md:w-[500px] lg:w-[580px] h-auto object-contain opacity-[0.085] transition-opacity duration-1000"
+          className="w-[280px] sm:w-[420px] md:w-[500px] lg:w-[580px] h-auto object-contain opacity-[0.16] transition-opacity duration-1000 pointer-events-none"
           style={{
-            filter: 'drop-shadow(0 0 50px rgba(0, 240, 255, 0.35))',
-            maskImage: 'radial-gradient(circle at center, black 45%, transparent 80%)',
-            WebkitMaskImage: 'radial-gradient(circle at center, black 45%, transparent 80%)'
+            filter: 'drop-shadow(0 0 40px rgba(0, 240, 255, 0.4)) drop-shadow(0 0 80px rgba(37, 99, 235, 0.25))',
+            maskImage: 'radial-gradient(circle at center, black 50%, transparent 85%)',
+            WebkitMaskImage: 'radial-gradient(circle at center, black 50%, transparent 85%)'
           }}
         />
         
         {/* Faint Center Optical Reticle */}
-        <div className="absolute w-2 h-2 rounded-full border border-cyan-400/30 bg-cyan-400/20 pointer-events-none" />
+        <div className="absolute w-2 h-2 rounded-full border border-cyan-400/50 bg-cyan-400/30 pointer-events-none shadow-[0_0_8px_rgba(0,240,255,0.6)]" />
       </div>
 
-      {/* 7. Subtle Viewport Corner Reticles */}
+      {/* 9. Subtle Viewport Corner Reticles */}
       <div className="absolute top-16 left-6 text-[10px] font-mono text-cyan-500/[0.15] hidden sm:block">
         [ SYS.SEC.32 ]
       </div>
