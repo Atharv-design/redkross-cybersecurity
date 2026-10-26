@@ -10,18 +10,31 @@ import {
   Users, 
   ArrowUpRight, 
   ExternalLink,
-  CheckCircle2, 
   Sparkles, 
   AlertCircle,
   FolderGit2,
   Lock,
   Compass,
-  GraduationCap
+  GraduationCap,
+  Briefcase,
+  BookOpen,
+  Clock,
+  Calendar,
+  CheckCircle2
 } from 'lucide-react';
 import { CYBER_DATA } from '../data/cyberData';
 
 export default function HomePage() {
-  const { identity, focusAreas, projects, howWeWork, collegePartnerships } = CYBER_DATA;
+  const { 
+    identity, 
+    focusAreas, 
+    projects, 
+    howWeWork, 
+    academy, 
+    collegePartnerships, 
+    opportunities, 
+    responsibleDisclosure 
+  } = CYBER_DATA;
 
   const iconMap = {
     Cpu: Cpu,
@@ -48,13 +61,21 @@ export default function HomePage() {
   return (
     <div className="pt-24 pb-20 select-none overflow-hidden">
       
-      {/* 1. HERO SECTION (Verbatim from Specification) */}
+      {/* =========================================================================
+          SECTION 1: HERO
+          Requirements: Headline, short explanation and 2–3 actions.
+          Exact copy from spec:
+          "Cybersecurity Research. Practical Learning. Safer Digital Systems."
+          "We explore cybersecurity challenges through applied research, carefully
+           scoped technical projects and accessible learning. Discover our focus
+           areas, review verified work or collaborate with RedKross."
+          Buttons: "Explore Research" → /research; "View Projects" → /projects;
+                   "Partner with Us" → /college-partnerships.
+         ========================================================================= */}
       <section className="relative px-4 sm:px-6 lg:px-8 py-20 lg:py-28 max-w-7xl mx-auto">
-        {/* Cyan Ambient Background Bloom */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[900px] h-[400px] bg-[#00F0FF]/[0.05] rounded-full blur-[180px] pointer-events-none" />
 
         <div className="relative z-10 text-center max-w-4xl mx-auto">
-          {/* Division Pill */}
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -66,7 +87,6 @@ export default function HomePage() {
             <span>REDKROSS RESEARCH FOUNDATION // CYBERSECURITY DIVISION</span>
           </motion.div>
 
-          {/* Headline with 3D SplitText Support */}
           <h1 
             className="text-4xl sm:text-6xl lg:text-7xl font-black text-white font-royal tracking-tight mb-6 leading-[1.1] split-heading"
             style={{ perspective: '1000px' }}
@@ -78,7 +98,6 @@ export default function HomePage() {
             Safer Digital Systems.
           </h1>
 
-          {/* Subtitle */}
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -89,7 +108,6 @@ export default function HomePage() {
             We explore cybersecurity challenges through applied research, carefully scoped technical projects and accessible learning. Discover our focus areas, review verified work or collaborate with RedKross.
           </motion.p>
 
-          {/* 3 Call-To-Action Buttons from Spec */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -121,7 +139,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. INTRODUCTION & PARENT FOUNDATION RELATIONSHIP */}
+
+      {/* =========================================================================
+          SECTION 2: INTRODUCTION
+          Requirements: Explain this is RedKross Research Foundation’s cybersecurity
+          division; link to the parent foundation.
+         ========================================================================= */}
       <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -133,13 +156,13 @@ export default function HomePage() {
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 text-xs font-mono text-[#00F0FF] mb-2">
               <ShieldCheck className="w-4 h-4" />
-              <span>INSTITUTIONAL SCOPE &amp; BOUNDARIES</span>
+              <span>DIVISION OF REDKROSS RESEARCH FOUNDATION</span>
             </div>
             <h3 className="text-xl sm:text-2xl font-bold font-royal text-white mb-2">
               The Dedicated Technical Wing of RedKross Research Foundation
             </h3>
             <p className="text-xs sm:text-sm text-gray-300 font-sans leading-relaxed">
-              This subdomain focuses strictly on cybersecurity engineering, isolated laboratory models, and practical student workshops. For institutional governance, incorporation documents, board profiles, or psychology initiatives, visit our canonical parent portal.
+              This subdomain focuses strictly on cybersecurity engineering, isolated laboratory models, and practical student workshops. This division does not claim separate legal incorporation. For institutional governance, incorporation documents, leadership profiles, or psychology initiatives, visit our canonical parent portal.
             </p>
           </div>
 
@@ -153,8 +176,14 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* 3. FOCUS AREAS (6 Research Tracks - Staggered Scroll-Linked Reveal) */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+
+      {/* =========================================================================
+          SECTION 3: FOCUS AREAS
+          Requirements: Cards for AI security, defensive security, digital forensics,
+          threat intelligence, cloud/IoT and human-centred security. Mark aspirational
+          areas honestly.
+         ========================================================================= */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
@@ -235,9 +264,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. SELECTED WORK & VERIFIED PROJECTS — ELEGANT PREVIEW */}
+
+      {/* =========================================================================
+          SECTION 4: SELECTED WORK
+          Requirements: Three or four verified projects at most, with status labels
+          and repository/details links.
+         ========================================================================= */}
       <section className="py-24 relative border-t border-white/5 overflow-hidden">
-        {/* Background Ambient Radial Glow */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[340px] bg-[#00F0FF]/[0.04] rounded-full blur-[180px] pointer-events-none" />
 
         <div className="text-center max-w-4xl mx-auto mb-16 px-4 sm:px-6 relative z-10">
@@ -250,7 +283,7 @@ export default function HomePage() {
           >
             <Sparkles className="w-3.5 h-3.5 text-[#00F0FF]" />
             <span>VERIFIED PORTFOLIO // ZERO FABRICATIONS</span>
-            <span className="text-gray-500 hidden sm:inline">&bull; SELECTED TECHNICAL WORK</span>
+            <span className="text-gray-500 hidden sm:inline">&bull; 3 VERIFIED PROJECTS</span>
           </motion.div>
 
           <h2 
@@ -267,11 +300,10 @@ export default function HomePage() {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="text-gray-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-sans"
           >
-            Each technical project communicates its core challenge, engineering method, architecture, and documented limitations. Visit our Projects Directory for interactive 3D rotation and full specifications.
+            Each technical project communicates its core challenge, engineering method, architecture, and documented limitations. Visit our Projects Directory for full specifications.
           </motion.p>
         </div>
 
-        {/* 3-Card Selected Work Grid with Scroll-Triggered Stagger */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.slice(0, 3).map((project, idx) => (
@@ -312,7 +344,6 @@ export default function HomePage() {
                     {project.approach}
                   </div>
 
-                  {/* Documented Limitation Notice */}
                   <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-[10px] text-amber-200/90 flex items-start gap-1.5 mb-4">
                     <AlertCircle className="w-3.5 h-3.5 text-[#FFA439] shrink-0 mt-0.5" />
                     <span className="line-clamp-2">
@@ -320,7 +351,6 @@ export default function HomePage() {
                     </span>
                   </div>
 
-                  {/* Tool Chips */}
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {project.tools.slice(0, 4).map((tool) => (
                       <span
@@ -347,7 +377,6 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Directory CTA Button */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -366,7 +395,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. HOW WE WORK — 5-STEP RESEARCH LOOP (Staggered Scroll-Linked Reveal) */}
+
+      {/* =========================================================================
+          SECTION 5: HOW WE WORK
+          Requirements: Research question → safe lab/dataset → evaluation →
+          documentation → responsible sharing.
+         ========================================================================= */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div 
@@ -423,7 +457,137 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. COLLEGE PARTNERSHIPS PREVIEW */}
+
+      {/* =========================================================================
+          SECTION 6: LEARNING AND STUDENT DEVELOPMENT
+          Requirements: Only describe workshops or project cohorts that are genuinely
+          ready to deliver. Label future Academy work.
+         ========================================================================= */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-cyan-500/20 text-xs font-mono text-cyan-300 mb-4"
+          >
+            <BookOpen className="w-3.5 h-3.5 text-[#00F0FF]" />
+            <span>PRACTICAL CAPACITY BUILDING</span>
+          </motion.div>
+          <h2 
+            className="text-3xl sm:text-4xl font-black text-white font-royal tracking-tight mb-4 split-heading"
+            style={{ perspective: '1000px' }}
+          >
+            Learning &amp; <span className="text-[#00F0FF]">Student Development</span>
+          </h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="text-sm text-gray-400 font-sans"
+          >
+            We deliver practical student training with real telemetry and defensive tooling. Future Academy programmes are clearly labelled as under development.
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          {/* Active / Ready to Deliver: Workshops & Capstone Cohorts */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+            className="rounded-2xl bg-[#090e1a]/80 border border-white/10 p-6 flex flex-col justify-between shadow-lg"
+          >
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono border border-emerald-500/40 text-emerald-400 bg-emerald-950/30">
+                  Ready to Deliver
+                </span>
+                <span className="text-xs font-mono text-gray-500">Live Delivery Formats</span>
+              </div>
+              <h3 className="text-xl font-bold font-royal text-white mb-2">
+                Hands-On Workshops &amp; Supervised Cohorts
+              </h3>
+              <p className="text-xs text-gray-300 font-sans leading-relaxed mb-6">
+                Engineered for college students and emerging practitioners. We run targeted 2–3 day bootcamps on Linux security and packet triage, as well as semester-long research capstone cohorts with structured milestones.
+              </p>
+              <ul className="space-y-2.5 text-xs font-sans text-gray-300 mb-6">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Practical defensive labs with disposable virtual environments</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Linux command-line fundamentals &amp; forensic evidence collection</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Faculty-aligned milestone reviews and peer code auditing</span>
+                </li>
+              </ul>
+            </div>
+            <Link
+              to="/college-partnerships"
+              className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#00F0FF] hover:underline pt-4 border-t border-white/10"
+            >
+              <span>Explore Workshop Delivery Options</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+          </motion.div>
+
+          {/* Labelled Future Academy Work */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="rounded-2xl bg-[#090e1a]/80 border border-amber-500/30 p-6 flex flex-col justify-between shadow-lg relative overflow-hidden"
+          >
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono border border-amber-500/40 text-[#FFA439] bg-amber-950/30">
+                  {academy.status}
+                </span>
+                <span className="text-xs font-mono text-gray-500">Curriculum Roadmapping</span>
+              </div>
+              <h3 className="text-xl font-bold font-royal text-white mb-2">
+                RedKross Academy (Future Learning Paths)
+              </h3>
+              <p className="text-xs text-gray-300 font-sans leading-relaxed mb-4">
+                {academy.disclaimer}
+              </p>
+
+              {/* Planned Tracks Preview */}
+              <div className="grid grid-cols-2 gap-2 mb-4">
+                {academy.plannedTracks.slice(0, 4).map(tr => (
+                  <div key={tr.track} className="p-2.5 rounded-xl bg-black/40 border border-white/5 text-[11px]">
+                    <div className="text-[10px] font-mono text-amber-300 font-bold">{tr.track} &bull; {tr.level}</div>
+                    <div className="text-gray-300 font-sans truncate">{tr.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <Link
+              to="/academy"
+              className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#FFA439] hover:underline pt-4 border-t border-white/10"
+            >
+              <span>Review Academy Roadmap &amp; Principles</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+
+      {/* =========================================================================
+          SECTION 7: COLLEGE PARTNERSHIPS
+          Requirements: Benefits, delivery formats, pilot enquiry and link to
+          /college-partnerships.
+         ========================================================================= */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
         <motion.div 
           initial={{ opacity: 0, scale: 0.96, y: 30 }}
@@ -432,62 +596,219 @@ export default function HomePage() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="rounded-3xl bg-gradient-to-r from-[#0a1224] via-[#080d1a] to-[#040810] border border-cyan-500/30 p-8 sm:p-12 relative overflow-hidden shadow-2xl"
         >
-          <div className="max-w-2xl relative z-10">
+          <div className="max-w-3xl relative z-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-xs font-mono text-[#00F0FF] mb-4">
               <GraduationCap className="w-4 h-4" />
               <span>ACADEMIC INSTITUTIONS &amp; FACULTY</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-black text-white font-royal mb-4 split-heading">
-              College &amp; University Collaboration
+              College &amp; University Partnerships
             </h2>
             <p className="text-xs sm:text-sm text-gray-300 font-sans leading-relaxed mb-6">
-              We partner with engineering colleges to deliver practical defensive workshops, faculty-aligned capstone cohorts, and disposable cyber lab training.
+              {collegePartnerships.overview}
             </p>
+
+            {/* Formats Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+              {collegePartnerships.formats.slice(0, 3).map((f, i) => (
+                <div key={i} className="p-3.5 rounded-xl bg-black/40 border border-white/10 text-xs">
+                  <div className="font-royal font-bold text-white mb-1">{f.title}</div>
+                  <div className="text-[10px] font-mono text-[#00F0FF] mb-1">{f.format}</div>
+                  <p className="text-[11px] text-gray-400 font-sans">{f.scope}</p>
+                </div>
+              ))}
+            </div>
+
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 to="/college-partnerships"
-                className="px-6 py-3 rounded-full bg-[#00F0FF] text-black font-royal font-bold text-xs uppercase hover:bg-[#5CF7FF] transition-all"
+                className="px-6 py-3 rounded-full bg-[#00F0FF] text-black font-royal font-bold text-xs uppercase hover:bg-[#5CF7FF] transition-all shadow-[0_0_20px_rgba(0,240,255,0.3)]"
               >
-                Request College Proposal
+                Submit Pilot Enquiry
               </Link>
               <Link
-                to="/academy"
-                className="px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white font-royal font-bold text-xs uppercase hover:bg-white/10 transition-all"
+                to="/college-partnerships"
+                className="px-6 py-3 rounded-full bg-white/5 border border-white/15 text-white font-royal font-bold text-xs uppercase hover:bg-white/10 transition-all"
               >
-                Inspect Academy Roadmap
+                Inspect Full Partnership Scope
               </Link>
             </div>
           </div>
         </motion.div>
       </section>
 
-      {/* 7. TRUST & RESPONSIBLE DISCLOSURE */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center border-t border-white/5">
+
+      {/* =========================================================================
+          SECTION 8: OPPORTUNITIES
+          Requirements: Real, approved openings only; include supervisor, scope,
+          eligibility and deadline.
+         ========================================================================= */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-cyan-500/20 text-xs font-mono text-cyan-300 mb-4"
+          >
+            <Briefcase className="w-3.5 h-3.5 text-[#00F0FF]" />
+            <span>GENUINE VACANCIES // APPROVED ROLES ONLY</span>
+          </motion.div>
+          <h2 
+            className="text-3xl sm:text-4xl font-black text-white font-royal tracking-tight mb-4 split-heading"
+            style={{ perspective: '1000px' }}
+          >
+            Research <span className="text-[#00F0FF]">Opportunities</span>
+          </h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="text-sm text-gray-400 font-sans"
+          >
+            We list only approved research positions with identified supervisors, defined tasks, and clear eligibility requirements.
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          {opportunities.map((opp, idx) => (
+            <motion.div
+              key={opp.slug}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: idx * 0.12 }}
+              className="rounded-2xl bg-[#090e1a]/85 border border-white/10 p-6 flex flex-col justify-between hover:border-cyan-500/40 transition-all shadow-lg"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[11px] font-mono text-[#00F0FF] uppercase tracking-wider font-semibold">
+                    {opp.domain}
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono border border-emerald-500/40 text-emerald-400 bg-emerald-950/30">
+                    Status: {opp.status}
+                  </span>
+                </div>
+
+                <h3 className="text-xl font-bold font-royal text-white mb-2 leading-tight">
+                  {opp.title}
+                </h3>
+
+                <div className="grid grid-cols-2 gap-2 text-xs font-mono text-gray-400 mb-4 bg-black/30 p-3 rounded-xl border border-white/5">
+                  <div className="flex items-center gap-1.5">
+                    <Users className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                    <span className="truncate"><strong>Lead:</strong> {opp.supervisor.split(' ')[0]}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                    <span><strong>Hours:</strong> {opp.hours}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Radio className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                    <span><strong>Type:</strong> {opp.delivery}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                    <span><strong>Term:</strong> {opp.duration}</span>
+                  </div>
+                </div>
+
+                <div className="text-xs text-gray-300 font-sans mb-3">
+                  <span className="text-[10px] font-mono text-gray-400 block mb-1 uppercase font-bold">Eligibility:</span>
+                  <p className="line-clamp-2 leading-relaxed">{opp.eligibility}</p>
+                </div>
+
+                <div className="text-xs text-gray-300 font-sans mb-4">
+                  <span className="text-[10px] font-mono text-gray-400 block mb-1 uppercase font-bold">Key Scope:</span>
+                  <ul className="list-disc pl-4 space-y-1 text-[11px] text-gray-300">
+                    {opp.tasks.slice(0, 2).map((t, i) => (
+                      <li key={i}>{t}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                <span className="text-[11px] font-mono text-gray-500">Deadline: Rolling Cohort</span>
+                <Link
+                  to={`/opportunities/${opp.slug}`}
+                  className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#00F0FF] hover:underline"
+                >
+                  <span>Role Scope &amp; Apply</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="text-center">
+          <Link
+            to="/opportunities"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white/5 border border-white/10 hover:border-cyan-500/40 text-xs font-mono text-cyan-300 hover:text-white transition-all shadow-md"
+          >
+            <span>View All Approved Opportunities</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+      </section>
+
+
+      {/* =========================================================================
+          SECTION 9: TRUST AND RESPONSIBILITY
+          Requirements: Ethics, authorised testing, privacy and responsible disclosure.
+         ========================================================================= */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center border-t border-white/5">
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-gray-400 mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-gray-400 mb-4">
             <Lock className="w-3.5 h-3.5 text-[#00F0FF]" />
             <span>ETHICS &amp; SAFEGUARDS</span>
           </div>
-          <h3 className="text-2xl sm:text-3xl font-bold font-royal text-white mb-3 split-heading">
+
+          <h3 className="text-2xl sm:text-4xl font-bold font-royal text-white mb-4 split-heading">
             Trust Is Part of the Research
           </h3>
+
           <p className="text-xs sm:text-sm text-gray-300 font-sans max-w-2xl mx-auto leading-relaxed mb-6">
-            We operate strictly under authorized testing permissions, synthetic datasets, and coordinated vulnerability disclosure. Testing RedKross or third-party systems without permission is strictly prohibited.
+            {responsibleDisclosure.statement}
           </p>
-          <Link
-            to="/responsible-disclosure"
-            className="inline-flex items-center gap-2 text-xs font-mono text-[#00F0FF] hover:underline"
-          >
-            <span>Read Responsible Vulnerability Disclosure Guidelines</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </Link>
+
+          <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 max-w-2xl mx-auto text-xs text-amber-200/90 font-mono mb-8 text-left flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-[#FFA439] shrink-0 mt-0.5" />
+            <div>
+              <strong className="text-[#FFA439] block mb-1">STRICT SAFETY BOUNDARY:</strong>
+              We operate strictly under authorized testing permissions and synthetic datasets. Testing RedKross or third-party systems without permission is strictly prohibited.
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link
+              to="/responsible-disclosure"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-xs font-mono text-[#00F0FF] hover:bg-cyan-500/25 transition-all"
+            >
+              <span>Responsible Vulnerability Disclosure</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+
+            <Link
+              to="/trust"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-gray-300 hover:text-white transition-all"
+            >
+              <span>Ethics &amp; Data Minimization</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
         </motion.div>
       </section>
+
+      {/* SECTION 10: FOOTER IS RENDERED GLOBALLY BY CyberFooter.jsx */}
 
     </div>
   );
