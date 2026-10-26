@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, ArrowUpRight, ExternalLink, Mail, Phone, MapPin } from 'lucide-react';
 import { CYBER_DATA } from '../data/cyberData';
+import DoodleCrewFooter from './ui/doodle-crew-footer-cyber';
 
 export default function CyberFooter() {
   const { identity } = CYBER_DATA;
@@ -40,9 +41,9 @@ export default function CyberFooter() {
             <h4 className="text-xs font-mono uppercase tracking-widest text-[#00F0FF] font-semibold">Technical Tracks</h4>
             <ul className="space-y-2 text-xs">
               <li><Link to="/research" className="hover:text-white transition-colors">Research Overview</Link></li>
-              <li><Link to="/research/ai-security" className="hover:text-white transition-colors">AI &amp; Model Security</Link></li>
-              <li><Link to="/research/defensive-security" className="hover:text-white transition-colors">Defensive Engineering</Link></li>
-              <li><Link to="/research/digital-forensics" className="hover:text-white transition-colors">Digital Forensics</Link></li>
+              <li><Link to="/research/ai-security-ml-defense" className="hover:text-white transition-colors">AI &amp; Model Security</Link></li>
+              <li><Link to="/research/defensive-engineering-resilient-architectures" className="hover:text-white transition-colors">Defensive Engineering</Link></li>
+              <li><Link to="/research/digital-forensics-reverse-engineering" className="hover:text-white transition-colors">Digital Forensics</Link></li>
               <li><Link to="/projects" className="hover:text-white transition-colors">Verified Projects</Link></li>
               <li><Link to="/labs" className="hover:text-white transition-colors">Lab Environments</Link></li>
             </ul>
@@ -88,6 +89,41 @@ export default function CyberFooter() {
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Interactive Hand-Drawn Doodle Crew Brandmark for Cybersecurity */}
+        <div className="my-8 pt-6 border-t border-white/5">
+          <DoodleCrewFooter
+            as="div"
+            showTop={false}
+            showBar={false}
+            wordmark="REDKROSS"
+            subWordmark="CYBERSECURITY"
+            wordmarkColorMode="logo"
+            tagline="Pioneering Applied Cybersecurity, Isolated Lab Sandboxes & Verifiable Defensive Engineering"
+            height="520px"
+            palette={{
+              background: "#03060A",
+              ink: "#f1f5f9",
+              accent: "#00F0FF"
+            }}
+            crew={[
+              { kind: "yeti", letter: 0, seat: "front", scale: 0.44, offset: -0.32, says: "Guarding zero-day vectors & perimeter!" },
+              { kind: "bird", letter: 1, seat: "top", offset: 0.08, says: "Real-time telemetry audit clean!" },
+              { kind: "ghost", letter: 2, seat: "behind", offset: 0.0, says: "Hidden backdoors neutralized!" },
+              { kind: "cat", letter: 3, seat: "top", offset: 0.05, says: "Forensic memory dump verified!" },
+              { kind: "kid", letter: 4, seat: "front", offset: 0.1, says: "Air-gap sandbox isolation active!" },
+              { kind: "mushroom", letter: 5, seat: "front", offset: -0.05, says: "Adversarial attack surface closed!" },
+              { kind: "bird", letter: 6, seat: "top", offset: -0.08, flip: true, says: "CVE reproduction pipeline running!" },
+              { kind: "cat", letter: 7, seat: "front", flip: true, offset: 0.12, says: "RedKross Cybersecurity sentry online!" }
+            ]}
+            doodles={[]}
+            doodleCount={0}
+            actions={[
+              { label: "Explore Research Focus", href: "/research", variant: "solid" },
+              { label: "Responsible Disclosure", href: "/responsible-disclosure", variant: "outline" }
+            ]}
+          />
         </div>
 
         {/* Bottom Bar: Ethics & Statutory Copyright */}
