@@ -64,7 +64,7 @@ export function getEcosystemUrl(platform, path = '') {
       return `http://${hostname}:${mainPort}${cleanPath}`;
     }
     if (platform === 'psychology') {
-      return `https://psychology.redkross.org.in${cleanPath}`;
+      return `http://${hostname}:5175${cleanPath}`;
     }
   }
 
@@ -77,7 +77,7 @@ export function getEcosystemUrl(platform, path = '') {
       return `https://redkross-cybersecurity.vercel.app${cleanPath}`;
     }
     if (platform === 'psychology') {
-      return `https://psychology.redkross.org.in${cleanPath}`;
+      return `https://redkross-psychology.vercel.app${cleanPath}`;
     }
   }
 
