@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useState, useRef } from 'react';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Users, Clock, MapPin, CheckCircle2, ArrowUpRight, ArrowLeft, Send, AlertCircle, ShieldCheck, Briefcase } from 'lucide-react';
 import { CYBER_DATA } from '../data/cyberData';
@@ -26,13 +26,35 @@ export default function OpportunitiesPage() {
   const [tasksHovered, setTasksHovered] = useState(false);
   const [formHovered, setFormHovered] = useState(false);
 
+  const lastSubmitRef = useRef(0);
+
   const selectedOpp = slug 
     ? opportunities.find(o => o.slug === slug) 
     : null;
 
+  // Security Hardening: Guard against unhandled invalid slugs (404/redirect)
+  if (slug && !selectedOpp) {
+    return <Navigate to="/opportunities" replace />;
+  }
+
   const handleAppSubmit = (e) => {
     e.preventDefault();
     if (appForm.hpField) return;
+    
+    // Anti-automation flood guard: 4-second minimum interval between attempts
+    const now = Date.now();
+    if (now - lastSubmitRef.current < 4000) return;
+    lastSubmitRef.current = now;
+
+    // Sanitize input state
+    setAppForm(prev => ({
+      ...prev,
+      name: prev.name.replace(/[^\w\s.-]/gi, '').trim(),
+      email: prev.email.trim(),
+      githubOrLinkedin: prev.githubOrLinkedin.trim(),
+      statement: prev.statement.trim()
+    }));
+
     setApplied(true);
   };
 

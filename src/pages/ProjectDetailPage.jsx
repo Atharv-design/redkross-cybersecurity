@@ -29,11 +29,8 @@ export default function ProjectDetailPage() {
   const [limitHovered, setLimitHovered] = useState(false);
   const [safetyHovered, setSafetyHovered] = useState(false);
 
-  const normalizedSlug = (slug || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-  const proj = projects.find(p => {
-    const pSlug = (p.slug || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-    return p.slug === slug || pSlug === normalizedSlug || pSlug.includes(normalizedSlug) || normalizedSlug.includes(pSlug);
-  });
+  const cleanSlug = (slug || '').toLowerCase().trim();
+  const proj = cleanSlug ? projects.find(p => (p.slug || '').toLowerCase() === cleanSlug) : null;
 
   if (!proj) {
     return <Navigate to="/projects" replace />;

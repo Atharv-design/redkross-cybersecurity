@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldCheck, ArrowUpRight, Building2, PhoneCall } from 'lucide-react';
 import { CYBER_DATA } from '../data/cyberData';
@@ -19,9 +19,25 @@ export default function ContactPage() {
   const [hoveredDesk, setHoveredDesk] = useState(null);
   const [formHovered, setFormHovered] = useState(false);
 
+  const lastSubmitRef = useRef(0);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (form.hpField) return;
+
+    // Anti-automation flood guard: 4-second minimum interval between submissions
+    const now = Date.now();
+    if (now - lastSubmitRef.current < 4000) return;
+    lastSubmitRef.current = now;
+
+    // Sanitize input state
+    setForm(prev => ({
+      ...prev,
+      name: prev.name.replace(/[^\w\s.-]/gi, '').trim(),
+      email: prev.email.trim(),
+      message: prev.message.trim()
+    }));
+
     setSubmitted(true);
   };
 
