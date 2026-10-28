@@ -30,7 +30,7 @@ export default function AcademyPage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.2 }}
         transition={{ duration: 0.5 }}
-        className="text-center max-w-3xl mx-auto mb-12"
+        className="text-center max-w-3xl mx-auto mb-10"
       >
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-xs font-mono text-[#00F0FF] mb-4">
           <GraduationCap className="w-4 h-4" />
@@ -39,9 +39,23 @@ export default function AcademyPage() {
         <h1 className="text-3xl sm:text-5xl font-black text-white font-royal tracking-tight mb-4 split-heading">
           RedKross <span className="text-[#00F0FF]">Academy</span>
         </h1>
-        <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
+        <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed mb-6">
           Structured learning pathways connecting systems fundamentals with hands-on defensive security engineering.
         </p>
+
+        {/* Live Academy Platform Link */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a
+            href="https://redkross-academy.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-bold text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(225,29,72,0.4)] transition-all hover:scale-105 font-mono"
+          >
+            <GraduationCap className="w-4 h-4" />
+            <span>Launch Live Academy Platform</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
+        </div>
       </motion.div>
 
       {/* Honest Disclaimer (Cyber HUD Banner) */}

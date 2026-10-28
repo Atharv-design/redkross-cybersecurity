@@ -62,6 +62,17 @@ export default function CyberNavbar() {
             <span>Psychology Platform</span>
             <ExternalLink className="w-3 h-3 opacity-60" />
           </a>
+          <span className="text-gray-600">|</span>
+          <a 
+            href="https://redkross-academy.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-rose-400 hover:text-white transition-colors"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
+            <span>Academy Platform</span>
+            <ExternalLink className="w-3 h-3 opacity-60" />
+          </a>
         </div>
         <div className="hidden md:flex items-center gap-3 text-[10px] text-cyan-400/80">
           <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] animate-pulse" />
