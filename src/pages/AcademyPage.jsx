@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { GraduationCap, ArrowUpRight, CheckCircle2, AlertCircle, Send, Lock, BookOpen } from 'lucide-react';
 import { CYBER_DATA } from '../data/cyberData';
+import { getEcosystemUrl } from '../utils/ecosystemLinks';
 import CyberBannerFrame from '../components/CyberBannerFrame';
 import CyberProjectCircuitFrame from '../components/CyberProjectCircuitFrame';
 
@@ -46,7 +47,7 @@ export default function AcademyPage() {
         {/* Live Academy Platform Link */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a
-            href="https://redkross-academy.vercel.app"
+            href={getEcosystemUrl('academy')}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-bold text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(225,29,72,0.4)] transition-all hover:scale-105 font-mono"

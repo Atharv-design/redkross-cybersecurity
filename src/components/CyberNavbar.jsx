@@ -9,6 +9,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 import { CYBER_DATA } from '../data/cyberData';
+import { getEcosystemUrl } from '../utils/ecosystemLinks';
 
 export default function CyberNavbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -64,7 +65,7 @@ export default function CyberNavbar() {
           </a>
           <span className="text-gray-600">|</span>
           <a 
-            href="https://redkross-academy.vercel.app"
+            href={getEcosystemUrl('academy')}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-rose-400 hover:text-white transition-colors"
